@@ -1,6 +1,9 @@
 * {
   box-sizing: border-box;
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Noto Sans JP', sans-serif;
+ sans-serif;
+ font-weight: bolder;
+ font-size: larger;
 }
 
 body {
@@ -14,6 +17,12 @@ body {
   background-color: cadetblue;
   text-align: center;
 }
+
+.time {
+  margin: 2%;
+  padding: 2%;
+  background-color: white;
+}
 /* formatting for answer boxes */
 #answerContainer {
   width: 800px;
@@ -26,6 +35,11 @@ body {
   padding: 10px;
   margin: 20px 0;
   gap: 10px;
+}
+
+.custom-btn {
+  background-color: white;
+  margin: 100%;
 }
 
 .option:hover {

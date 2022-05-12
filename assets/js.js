@@ -1,41 +1,60 @@
 var startButton = $("#startBtn");
 var questionContainer = $("quizQuestions");
 var quizResult = $("#results")
+var timeCountdown = $(".time")
+var secondsLeft = 15;
 var currentQuestion = -1;
+var answersCorrect = 0;
+
+function setTime() {
+    // Sets interval in variable
+    var timerInterval = setInterval(function () {
+        secondsLeft--;
+        timeCountdown.text(secondsLeft + " seconds left to finish quiz");
+
+        if (secondsLeft === 0) {
+            // Stops execution of action at set interval
+            clearInterval(timerInterval);
+            quizOver()
+        }
+
+    }, 1000);
+}
+
 
 var questions = [
     {
-        question: "Question 1",
+        question: "What was the first name of the killer in Friday the 13th (1980)?",
         answers: [
-            { text: "1", correct: true },
-            { text: "2", correct: false },
-            { text: "3", correct: false },
+            { text: "Pamela", correct: true },
+            { text: "Jason", correct: false },
+            { text: "Michael", correct: false },
         ]
     },
     {
-        question: "Question 2",
+        question: "In what movie was the killer dressed as William Shatner?",
         answers: [
-            { text: "1", correct: true },
-            { text: "2", correct: false },
-            { text: "3", correct: false },
+            { text: "Dressed to Kill", correct: false },
+            { text: "Scream", correct: false },
+            { text: "Halloween", correct: true },
         ]
     },
 
     {
-        question: "Question 3",
+        question: "What is Chucky's (Child's Play) real name?",
         answers: [
-            { text: "1", correct: true },
-            { text: "2", correct: false },
-            { text: "3", correct: false },
+            { text: "Charles Lee Ray", correct: true },
+            { text: "Charlie Fisher", correct: false },
+            { text: "Carton D'Melio", correct: false },
         ]
     }
 ]
 
+//calls questions
 function start() {
     nextQuestion();
+    setTime();
 }
-
-
 
 function nextQuestion() {
     currentQuestion++;
@@ -70,16 +89,29 @@ function nextQuestion() {
 
 }
 
-
+//responds to correct answer
 function correct() {
     console.log("correct");
-    alert("Correct");
+    answersCorrect++;
     nextQuestion();
 }
+//responds to incorrect answers
 function incorrect() {
-    console.log("incorrect")
-    alert("Incorrect")
+    console.log("incorrect");
+
     nextQuestion();
 }
 
+function quizOver() {
+    $("#bodyID").empty();
+    score();
+}
+
+function score() {
+    $("#bodyID").html("<div> Final Score <br>" + answersCorrect + " </div >"
+        + "<div> <button type=\"button\" class=\"option\">Submit</button>")
+        ;
+}
+
+//starts quiz
 startButton.on("click", start)
