@@ -15,21 +15,32 @@
 </head>
 
 <body id="bodyID">
-    <button type="button" class="btn btn-primary btn-lg btn-block" id="startBtn"> Start</button>
+    <button type="button" class="btn btn-primary btn-lg btn-block" id="startBtn"> Start The Horror Movie
+        Quiz</button>
     <h1 class="time" style="text-align:center;"></h1>
-    <div class="hide" id="quizQuestions">
+    <div class="questions" id="quizQuestions">
         <div id="q1">
         </div>
     </div>
-    <div type="button" class="btn btn-primary btn-lg custom-btn" id="answerContainer">
-        <button class="option" id="opt1"></button>
-        <button class="option" id="opt2"></button>
-        <button class="option" id="opt3"></button>
+    <div class="wrapper">
+        <div type="button" class="btn btn-primary btn-lg custom-btn" id="answerContainer">
+            <button class="option" id="opt1"></button>
+            <button class="option" id="opt2"></button>
+            <button class="option" id="opt3"></button>
+        </div>
     </div>
-    <div id="results">
-
+    <div class="results" id="score">
 
     </div>
+
+    <button type="button" class="btn btn-secondary btn-lg btn-block" id="submitBtn"
+        onclick=submitScore()>Submit</button>
+
+    <!-- <table class="scoreTable">
+        <tr>High Score</tr>
+        <tr>Initials</tr>
+    </table> -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="assets/js.js"></script>
 </body>

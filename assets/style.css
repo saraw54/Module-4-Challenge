@@ -1,9 +1,8 @@
 * {
   box-sizing: border-box;
   font-family: 'Noto Sans JP', sans-serif;
- sans-serif;
- font-weight: bolder;
- font-size: larger;
+  font-weight: bolder;
+  font-size: larger;
 }
 
 body {
@@ -14,7 +13,7 @@ body {
   align-items: center; */
   width: 100vw;
   height: 100vh;
-  background-color: cadetblue;
+  background-color: skyblue;
   text-align: center;
 }
 
@@ -28,13 +27,18 @@ body {
   width: 800px;
   max-width: 80%;
   border-radius: 5px;
-  display: inline-flex;
+  display: flex;
   justify-content: center;
-  align-items: center;
   flex-direction: column;
   padding: 10px;
   margin: 20px 0;
   gap: 10px;
+  display: none;
+}
+
+.wrapper {
+  display: flex;
+  justify-content: center;
 }
 
 .custom-btn {
@@ -42,10 +46,11 @@ body {
   margin: 100%;
 }
 
-.option:hover {
-  background-color: yellow;
-}
-/* hide start after beginning, hide next and questions until start has been pressed */
-/* .hide {
+#submitBtn {
   display: none;
-} */
+}
+
+table {
+  width: 100%;
+  /* display: none; */
+}

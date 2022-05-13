@@ -1,10 +1,13 @@
 var startButton = $("#startBtn");
-var questionContainer = $("quizQuestions");
-var quizResult = $("#results")
-var timeCountdown = $(".time")
-var secondsLeft = 15;
+var questionContainer = $("#quizQuestions");
+var answerShow = $("#answerContainer");
+var timeCountdown = $(".time");
+var secondsLeft = 1000;
 var currentQuestion = -1;
 var answersCorrect = 0;
+var score = $("#score");
+var submitBtn = $("#submitBtn");
+var scoreTable = $(".scoreTable");
 
 function setTime() {
     // Sets interval in variable
@@ -12,7 +15,7 @@ function setTime() {
         secondsLeft--;
         timeCountdown.text(secondsLeft + " seconds left to finish quiz");
 
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             // Stops execution of action at set interval
             clearInterval(timerInterval);
             quizOver()
@@ -21,7 +24,7 @@ function setTime() {
     }, 1000);
 }
 
-
+//quiz questions and potential answers
 var questions = [
     {
         question: "What was the first name of the killer in Friday the 13th (1980)?",
@@ -47,15 +50,27 @@ var questions = [
             { text: "Charlie Fisher", correct: false },
             { text: "Carton D'Melio", correct: false },
         ]
+    },
+
+    {
+        question: "What town does Freddy Krueger terrorize?",
+        answers: [
+            { text: "Jacksonville", correct: false },
+            { text: "Barstow", correct: false },
+            { text: "Springfield", correct: true },
+        ]
     }
 ]
 
-//calls questions
+//calls questions/hides start and shows questions/starts timer
 function start() {
+    startButton.hide();
+    answerShow.show()
+    answerShow.attr("style", "display:flex");
     nextQuestion();
     setTime();
 }
-
+//calls next question
 function nextQuestion() {
     currentQuestion++;
     $("#q1").text(questions[currentQuestion].question);
@@ -93,25 +108,61 @@ function nextQuestion() {
 function correct() {
     console.log("correct");
     answersCorrect++;
-    nextQuestion();
+    if (currentQuestion >= questions.length - 1) {
+        quizOver();
+    }
+    else {
+        nextQuestion();
+    }
+
 }
 //responds to incorrect answers
 function incorrect() {
     console.log("incorrect");
+    if (currentQuestion >= questions.length - 1) {
+        quizOver();
+    }
+    else {
+        nextQuestion();
+    }
 
-    nextQuestion();
+}
+//show score upon completion
+function updateScore() {
+    if (answersCorrect >= 0) {
+        score.text("Your score is " + answersCorrect);
+    }
 }
 
+//when all questions are answers, hides questions and timer
 function quizOver() {
-    $("#bodyID").empty();
-    score();
+    answerShow.hide();
+    questionContainer.hide();
+    timerInterval = 0;
+    timeCountdown.hide();
+    updateScore();
+    submitBtn.show();
+    // table.show();
 }
 
-function score() {
-    $("#bodyID").html("<div> Final Score <br>" + answersCorrect + " </div >"
-        + "<div> <button type=\"button\" class=\"option\">Submit</button>")
-        ;
+function submitScore() {
+    console.log("submitScore");
+    var scoreTableData = localStorage.getItem("highScores");
+    if (scoreTableData === null) {
+        scoreTableData = [];
+    }
+    else {
+        scoreTableData = JSON.parse(scoreTableData)
+    }
+
+    scoreTableData.push(answersCorrect);
+    localStorage.setItem("highScores", JSON.stringify(scoreTableData));
 }
+
+// scoreTable = $("highScores");
+// for (var i = 1; i < 1; i++) { }
+
 
 //starts quiz
 startButton.on("click", start)
+
