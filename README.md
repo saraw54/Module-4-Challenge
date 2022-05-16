@@ -6,8 +6,10 @@ The user experience of this quiz game includes clicking start and being presente
 
 The table-related commented out code is to provide a base for displaying a scoreboard in the future.
 
-See screenshot below:
-https://user-images.githubusercontent.com/95704740/168198859-9d2b3cef-fb28-4a21-9634-748b057d9a3e.png
+Github link:
+https://github.com/saraw54/Quiz-Game-Challenge
 
 Visit the game at the link below:
 https://saraw54.github.io/Quiz-Game-Challenge/
+
+![screenshot](Challenge-4-Screenshot.PNG?raw=true "screenshot")
